@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: population
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: population_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  get_data:
+    build:
+      context: ./app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+psycopg2://population:secret@db:5432/population_db
+    entrypoint: ["/usr/src/app/entrypoint_get.sh"]
+
+volumes:
+  pgdata: {}
