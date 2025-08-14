@@ -8,7 +8,10 @@ done
 
 python - << 'EOF'
 from EarthPopulation.db import Base, engine
+from EarthPopulation.models import Country
 Base.metadata.create_all(engine)
+
+print("Tables created successfully.")
 EOF
 
 python -m EarthPopulation.loader

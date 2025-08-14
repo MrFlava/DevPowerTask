@@ -21,6 +21,9 @@ class DataLoader:
             if len(cols) < 5:
                 continue
 
+            if cols[0].get_text(strip=True) == "World":
+                continue
+
             country_name = cols[0].get_text(strip=True)
             pop_2023 = cols[2].get_text(strip=True).replace(",", "")
             region = cols[4].get_text(strip=True)
@@ -33,7 +36,7 @@ class DataLoader:
                 )
                 self.session.merge(c)
 
-            self.session.commit()
+        self.session.commit()
 
 if __name__ == "__main__":
     DataLoader().get_data()
