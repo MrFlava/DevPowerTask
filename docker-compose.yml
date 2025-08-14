@@ -17,9 +17,14 @@ services:
       context: ./app
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgresql+psycopg2://population:secret@db:5432/population_db
     entrypoint: ["/usr/src/app/entrypoint_get.sh"]
+
+  print_data:
+    build:
+      context: ./app
+    depends_on:
+      - db
+    entrypoint: [ "/usr/src/app/entrypoint_print.sh" ]
 
 volumes:
   pgdata: {}
