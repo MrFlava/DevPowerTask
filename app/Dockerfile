@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN chmod +x entrypoint_get.sh
+RUN chmod +x entrypoint_get.sh entrypoint_print.sh
